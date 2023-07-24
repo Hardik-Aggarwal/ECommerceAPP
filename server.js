@@ -2,7 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import { connectDB } from "./config/db.js";
-import authRoute from "./routes/authRoute.js"
+import authRoute from "./routes/authRoute.js";
+import cors from 'cors';
+
+
+
 dotenv.config();
 
 //database
@@ -13,6 +17,15 @@ const app = express();
 
 //middlewares
 app.use(express.json());
+app.use(cors());
+// app.use(
+//   cors({
+//     origin: [process.env.FRONTEND_URL],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );  
+
 app.use(morgan('dev'));
 
 //routes
